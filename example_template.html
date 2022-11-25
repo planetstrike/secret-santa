@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secret Santa</title>
+</head>
+<body>
+From Person Id: {{.From.Person.Id}}
+From Person Actor Id: {{.From.Person.ActorId}}
+From Person First Name: {{.From.Person.FirstName}}
+From Person Last Name: {{.From.Person.LastName}}
+From Person Public Name: {{.From.Person.PublicName}}
+From Person Email: {{.From.Person.Email}}
+From Person Address: {{.From.Address.Address}}
+From Person City: {{.From.Address.City}}
+From Person State: {{.From.Address.State}}
+From Person Zipcode: {{.From.Address.Zipcode}}
+
+To Person Id: {{.To.Person.Id}}
+To Person Actor Id: {{.To.Person.ActorId}}
+To Person First Name: {{.To.Person.FirstName}}
+To Person Last Name: {{.To.Person.LastName}}
+To Person Public Name: {{.To.Person.PublicName}}
+To Person Email: {{.To.Person.Email}}
+To Person Address: {{.To.Address.Address}}
+To Person City: {{.To.Address.City}}
+To Person State: {{.To.Address.State}}
+To Person Zipcode: {{.To.Address.Zipcode}}
+
+<i>actor describes someone who will receive the email. this is in place in case the actor may not be the same as the actual email recipient</i>
+Actor Id: {{.Actor.Person.Id}}
+Actor Actor Id: {{.Actor.Person.ActorId}}
+Actor First Name: {{.Actor.Person.FirstName}}
+Actor Last Name: {{.Actor.Person.LastName}}
+Actor Public Name: {{.Actor.Person.PublicName}}
+Actor Email: {{.Actor.Person.Email}}
+Actor Address: {{.Actor.Address.Address}}
+Actor City: {{.Actor.Address.City}}
+Actor State: {{.Actor.Address.State}}
+Actor Zipcode: {{.Actor.Address.Zipcode}}
+</body>
+</html>

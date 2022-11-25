@@ -1,0 +1,15 @@
+{
+  "data_file": "example_data.json",
+  "html_template_file": "example_template.html",
+  "enable_debug_messages": true,
+  "write_html_files": true,
+  "smtp": {
+    "enabled" : false,
+    "host" : "in-v3.mailjet.com",
+    "port" : 587,
+    "user_name" : "your_username",
+    "password" : "secure_password",
+    "sender_email": "Secret Santa <secretsanta@host.com>",
+    "subject": "Secret Santa!"
+  }
+}

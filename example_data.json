@@ -1,0 +1,75 @@
+[
+  {
+    "address" : "45 Beech Ave.",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipcode": "30303",
+    "residents": [
+      {
+        "id": "jonathan_wise",
+        "first_name": "Jon",
+        "last_name": "Wise",
+        "public_name": "Jonathan Wise",
+        "email": "jigsaw@aol.com",
+        "actor_id": "elizabeth_wise"
+      },
+      {
+        "id": "elizabeth_wise",
+        "first_name":"Liz",
+        "last_name": "Wise",
+        "public_name": "Elizabeth Wise",
+        "email": "ournews@yahoo.com"
+      }
+    ]
+  },
+  {
+    "address": "17 Blue Spring St",
+    "city": "Harrison Township",
+    "state": "MI",
+    "zipcode": "48045",
+    "residents": [
+      {
+        "id": "brett_curry",
+        "first_name": "Brett",
+        "last_name": "Curry",
+        "public_name": "Brett Curry",
+        "email": "yankees2232@outlook.com"
+      },
+      {
+        "id": "caroline_curry",
+        "first_name": "Caroline",
+        "last_name": "Curry",
+        "public_name": "Caroline Curry",
+        "email": "seamonkey22@gmail.com"
+      },
+      {
+        "id": "matias_curry",
+        "first_name": "Matt",
+        "last_name": "Curry",
+        "public_name": "Matias Curry",
+        "email": "bulbasaur123@gmail.com"
+      }
+    ]
+  },
+  {
+    "address":"318 S. Fairway St.",
+    "city": "Davidson",
+    "state": "MI",
+    "zipcode": "48423",
+    "residents": [
+      {
+        "id": "christian_hahn",
+        "first_name": "Christian",
+        "last_name": "Hahn",
+        "public_name": "Christian Hahn",
+        "email": "chahn1999@msn.com"
+      },
+      {
+        "id": "savannah_frazier",
+        "first_name": "Savannah",
+        "last_name": "Frazier",
+        "email": "oceanknitting@gmail.com"
+      }
+    ]
+  }
+]
