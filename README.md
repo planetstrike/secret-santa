@@ -5,8 +5,8 @@ Randomized gift exchange emailer.
 
 | Field                   | Type    | Description                                                         | Example                                   |
 |-------------------------|---------|---------------------------------------------------------------------|-------------------------------------------|
-| `data_file`             | string  | the file name that contains the addresses and people                | `"data.json"`                             |
-| `html_template_file`    | string  | html email template file name.                                      | `"template.html"`                         |
+| `data_file`             | string  | the file name that contains the addresses and people                | `"example_data.json"`                     |
+| `html_template_file`    | string  | html email template file name.                                      | `"example_template.html"`                 |
 | `enable_debug_messages` | boolean | writes debug messages to the console                                | `true`                                    |
 | `write_html_files`      | boolean | writes processed template html files to the `output_html` directory | `true`                                    |
 | `smtp.enabled`          | boolean | enables sending of the emails                                       | `true`                                    |
@@ -37,18 +37,18 @@ Randomized gift exchange emailer.
 ```
 
 ## Data File Format
-| Field                   | Type   | Description                                                                                                                                | Example                      |
-|-------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|
-| `address`               | string | mailing street address                                                                                                                     | `"45 Beach Ave."`            |
-| `city`                  | string | mailing city                                                                                                                               | `"Atlanta"`                  |
-| `state`                 | string | mailing state                                                                                                                              | `"GA"`                       |
-| `zipcode`               | string | mailing state                                                                                                                              | `"30303"`                    |
-| `residents.id`          | string | a unique string used to identify people.                                                                                                   | `"jonathan_wise"`            |
-| `residents.first_name`  | string | participant's first name                                                                                                                   | `"in-v3.mailjet.com"`        |
-| `residents.last_name`   | string | participant's last name                                                                                                                    | `587`                        |
-| `residents.public_name` | string | when the official name used to send mail is different from what a person is normally called                                                | `587`                        |
-| `residents.email`       | string | participant's email.                                                                                                                       | `"generatedAPIKey1234"`      |
-| `residents.actor_id`    | string | in cases where someone needs assistance, the `actor_id` is the `id` of another person who will receive the email on this person's behalf.  | `"generatedAPIPassword5555"` |
+| Field                   | Type   | Description                                                                                                                                | Example            |
+|-------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| `address`               | string | mailing street address                                                                                                                     | `"45 Beach Ave."`  |
+| `city`                  | string | mailing city                                                                                                                               | `"Atlanta"`        |
+| `state`                 | string | mailing state                                                                                                                              | `"GA"`             |
+| `zipcode`               | string | mailing state                                                                                                                              | `"30303"`          |
+| `residents.id`          | string | a unique string used to identify people.                                                                                                   | `"jonathan_wise"`  |
+| `residents.first_name`  | string | participant's first name                                                                                                                   | `"Jon"`            |
+| `residents.last_name`   | string | participant's last name                                                                                                                    | `"Wise"`           |
+| `residents.public_name` | string | when the official name used to send mail is different from what a person is normally called                                                | `"Jonathan Wise"`  |
+| `residents.email`       | string | participant's email.                                                                                                                       | `"jigsaw@aol.com"` |
+| `residents.actor_id`    | string | in cases where someone needs assistance, the `actor_id` is the `id` of another person who will receive the email on this person's behalf.  | `"elizabeth_wise"`   |
 
 ### Example
 ```json
