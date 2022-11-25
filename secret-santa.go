@@ -58,7 +58,7 @@ func loadConfig(filename string) (*Config, error) {
 	fileData, fileErr := os.ReadFile(filename)
 
 	if fileErr != nil {
-		return nil, fmt.Errorf(`Error reading confiuration File "%v", Source Error: %v`, filename, fileErr)
+		return nil, fmt.Errorf(`Error reading configuration File "%v", Source Error: %v`, filename, fileErr)
 	}
 
 	var config Config
@@ -66,7 +66,7 @@ func loadConfig(filename string) (*Config, error) {
 	parseError := json.Unmarshal(fileData, &config)
 
 	if parseError != nil {
-		return nil, fmt.Errorf(`Error parsing confiuration File "%v", Source Error: %v`, filename, parseError)
+		return nil, fmt.Errorf(`Error parsing configuration File "%v", Source Error: %v`, filename, parseError)
 	}
 
 	return &config, nil

@@ -3,19 +3,20 @@ Randomized gift exchange emailer.
 
 ## Configuration JSON
 
-| Field                   | Type    | Description                                                         | Example                                   |
-|-------------------------|---------|---------------------------------------------------------------------|-------------------------------------------|
-| `data_file`             | string  | the file name that contains the addresses and people                | `"example_data.json"`                     |
-| `html_template_file`    | string  | html email template file name.                                      | `"example_template.html"`                 |
-| `enable_debug_messages` | boolean | writes debug messages to the console                                | `true`                                    |
-| `write_html_files`      | boolean | writes processed template html files to the `output_html` directory | `true`                                    |
-| `smtp.enabled`          | boolean | enables sending of the emails                                       | `true`                                    |
-| `smtp.host`             | string  | SMTP server host                                                    | `"in-v3.mailjet.com"`                     |
-| `smtp.port`             | int     | SMTP server port                                                    | `587`                                     |
-| `smtp.user_name`        | string  | SMTP plain auth user name                                           | `"generatedAPIKey1234"`                   |
-| `smtp.password`         | string  | SMTP plain auth password                                            | `"generatedAPIPassword5555"`              |
-| `smtp.sender_email`     | string  | Email `From` field on emails sent                                   | `"Secret Santa <santa@customdomain.com>"` |
-| `smtp.subject`          | string  | Email `Subject` field on emails sent                                | `"2022 Secret Santa!"`                    |
+| Field                                 | Type    | Description                                                         | Example                                   |
+|---------------------------------------|---------|---------------------------------------------------------------------|-------------------------------------------|
+| `data_file`                           | string  | the file name that contains the addresses and people                | `"example_data.json"`                     |
+| `html_template_file`                  | string  | html email template file name.                                      | `"example_template.html"`                 |
+| `enable_debug_messages`               | boolean | writes debug messages to the console                                | `true`                                    |
+| `write_html_files`                    | boolean | writes processed template html files to the `output_html` directory | `true`                                    |
+| `rules.allow_same_residence_exchange` | boolean | allow gift exchanges to occur in the same household                 | `false`                                   |
+| `smtp.enabled`                        | boolean | enables sending of the emails                                       | `true`                                    |
+| `smtp.host`                           | string  | SMTP server host                                                    | `"in-v3.mailjet.com"`                     |
+| `smtp.port`                           | int     | SMTP server port                                                    | `587`                                     |
+| `smtp.user_name`                      | string  | SMTP plain auth user name                                           | `"generatedAPIKey1234"`                   |
+| `smtp.password`                       | string  | SMTP plain auth password                                            | `"generatedAPIPassword5555"`              |
+| `smtp.sender_email`                   | string  | Email `From` field on emails sent                                   | `"Secret Santa <santa@customdomain.com>"` |
+| `smtp.subject`                        | string  | Email `Subject` field on emails sent                                | `"2022 Secret Santa!"`                    |
 
 ### Example
 ```json
