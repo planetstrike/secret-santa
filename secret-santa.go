@@ -38,13 +38,13 @@ func main() {
 		panic(addressesErr)
 	}
 
-	gifts, giftsErr := generateSecretSantaAssignments(addresses)
-	if giftsErr != nil {
-		panic(giftsErr)
+	assignments, assignmentsErr := generateSecretSantaAssignments(addresses)
+	if assignmentsErr != nil {
+		panic(assignmentsErr)
 	}
 
-	for _, gift := range gifts {
-		err := sendSecretSantaEmail(gift, globalConfig.HTMLTemplateFile)
+	for _, assignment := range assignments {
+		err := sendSecretSantaEmail(assignment, globalConfig.HTMLTemplateFile)
 		if err != nil {
 			panic(err)
 		}
@@ -192,10 +192,10 @@ func generateSecretSantaAssignments(addresses []Address) ([]SecretSantaAssignmen
 	run := true
 	count := 0
 	for run && count < 1000 {
-		gifts, err := attemptSecretSantaAssignments(recipients)
+		assignments, err := attemptSecretSantaAssignments(recipients)
 
 		if err == nil {
-			return gifts, nil
+			return assignments, nil
 		}
 
 		printlnDebug("Reattempting assignment...")
@@ -303,7 +303,7 @@ func attemptSecretSantaAssignments(residents map[string]Resident) ([]SecretSanta
 	return assignments, nil
 }
 
-func sendSecretSantaEmail(gift SecretSantaAssignment, emailTemplate string) error {
+func sendSecretSantaEmail(assignment SecretSantaAssignment, emailTemplate string) error {
 
 	templateHtml, templateHtmlErr := template.ParseFiles(emailTemplate)
 
@@ -314,15 +314,15 @@ func sendSecretSantaEmail(gift SecretSantaAssignment, emailTemplate string) erro
 	// process templates
 	buf := new(bytes.Buffer)
 
-	executeErr := templateHtml.Execute(buf, gift)
+	executeErr := templateHtml.Execute(buf, assignment)
 
 	if executeErr != nil {
 		return fmt.Errorf("Unable to templatize email %v", executeErr)
 	}
 
-	emailRecipient := gift.Actor.Person
+	emailRecipient := assignment.Actor.Person
 
-	printlnDebug(fmt.Sprintf("Emailed To: %s, For %s → %s", emailRecipient.Email, gift.From.Person.Id, gift.To.Person.Id))
+	printlnDebug(fmt.Sprintf("Emailed To: %s, For %s → %s", emailRecipient.Email, assignment.From.Person.Id, assignment.To.Person.Id))
 
 	if globalConfig.WriteHtmlFiles {
 		folder := "output_html"
@@ -330,7 +330,7 @@ func sendSecretSantaEmail(gift SecretSantaAssignment, emailTemplate string) erro
 			os.Mkdir(folder, 0755)
 		}
 
-		fileName := fmt.Sprintf("%v/%v.html", folder, gift.From.Person.Id)
+		fileName := fmt.Sprintf("%v/%v.html", folder, assignment.From.Person.Id)
 		fmt.Println("Writing", fileName)
 
 		os.WriteFile(fileName, buf.Bytes(), 0755)
