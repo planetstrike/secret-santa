@@ -190,7 +190,8 @@ func generateSecretSantaAssignments(addresses []Address) ([]SecretSantaAssignmen
 	rand.Seed(time.Now().UnixMilli())
 
 	run := true
-	for run {
+	count := 0
+	for run && count < 1000 {
 		gifts, err := attemptSecretSantaAssignments(recipients)
 
 		if err == nil {
@@ -198,6 +199,16 @@ func generateSecretSantaAssignments(addresses []Address) ([]SecretSantaAssignmen
 		}
 
 		printlnDebug("Reattempting assignment...")
+
+		count++
+
+		if count == 1000 {
+			if !globalConfig.Rules.AllowSameResidenceExchange {
+				// allowing same residence exchanges are more forgiving, so this hopefully should never get in here.
+				return nil, fmt.Errorf(`Could not assign secret santas..`)
+			}
+			return nil, fmt.Errorf(`Could not assign secret santas. Try setting "allow_same_residence_exchange" to true.`)
+		}
 	}
 
 	return nil, nil
@@ -237,9 +248,9 @@ func attemptSecretSantaAssignments(residents map[string]Resident) ([]SecretSanta
 		residentsCopy[k] = v
 	}
 
-	residentSequence := randomSequenceFromMapValues(residents)
+	residentSequence := randomSequenceFromMapValues(residentsCopy)
 
-	gifts := make([]SecretSantaAssignment, 0)
+	assignments := make([]SecretSantaAssignment, 0)
 
 	for _, from := range residentSequence {
 		success := false
@@ -262,12 +273,12 @@ func attemptSecretSantaAssignments(residents map[string]Resident) ([]SecretSanta
 				continue
 			}
 
-			if from.Address.Address == to.Address.Address {
+			if !globalConfig.Rules.AllowSameResidenceExchange && from.Address.Address == to.Address.Address {
 				printlnDebug(fmt.Sprintf("Person %v and %v have the same address", from.Person.Id, to.Person.Id))
 				continue
 			}
 
-			gift := SecretSantaAssignment{
+			assignment := SecretSantaAssignment{
 				From:  from,
 				To:    to,
 				Actor: from,
@@ -275,10 +286,10 @@ func attemptSecretSantaAssignments(residents map[string]Resident) ([]SecretSanta
 
 			if len(from.Person.ActorId) > 0 {
 				actor := residents[from.Person.ActorId]
-				gift.Actor = actor
+				assignment.Actor = actor
 			}
 
-			gifts = append(gifts, gift)
+			assignments = append(assignments, assignment)
 			delete(residentsCopy, to.Person.Id)
 			success = true
 			break
@@ -289,7 +300,7 @@ func attemptSecretSantaAssignments(residents map[string]Resident) ([]SecretSanta
 		}
 	}
 
-	return gifts, nil
+	return assignments, nil
 }
 
 func sendSecretSantaEmail(gift SecretSantaAssignment, emailTemplate string) error {
@@ -374,11 +385,12 @@ func sendHtmlEmail(to Person, htmlBody string) error {
 }
 
 type Config struct {
-	DataFile            string     `json:"data_file"`
-	HTMLTemplateFile    string     `json:"html_template_file"`
-	EnableDebugMessages bool       `json:"enable_debug_messages"`
-	WriteHtmlFiles      bool       `json:"write_html_files"`
-	SMTP                SMTPConfig `json:"smtp"`
+	DataFile            string      `json:"data_file"`
+	HTMLTemplateFile    string      `json:"html_template_file"`
+	EnableDebugMessages bool        `json:"enable_debug_messages"`
+	WriteHtmlFiles      bool        `json:"write_html_files"`
+	Rules               RulesConfig `json:"rules"`
+	SMTP                SMTPConfig  `json:"smtp"`
 }
 
 type SMTPConfig struct {
@@ -389,6 +401,10 @@ type SMTPConfig struct {
 	Password    string `json:"password"`
 	SenderEmail string `json:"sender_email"`
 	Subject     string `json:"subject"`
+}
+
+type RulesConfig struct {
+	AllowSameResidenceExchange bool `json:"allow_same_residence_exchange"`
 }
 
 type Address struct {

@@ -3,6 +3,9 @@
   "html_template_file": "example_template.html",
   "enable_debug_messages": true,
   "write_html_files": true,
+  "rules": {
+    "allow_same_residence_exchange": false
+  },
   "smtp": {
     "enabled" : false,
     "host" : "in-v3.mailjet.com",
