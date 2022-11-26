@@ -354,7 +354,7 @@ func sendHtmlEmail(to Person, htmlBody string) error {
 
 	auth := smtp.PlainAuth("", globalConfig.SMTP.UserName, globalConfig.SMTP.Password, globalConfig.SMTP.Host)
 
-	senderEmail := "Secret Santa <santa@codereactor.com>"
+	senderEmail := globalConfig.SMTP.SenderEmail
 	recipientEmail := fmt.Sprintf("%s <%s>", to.PublicName, to.Email)
 	messageHeaders := make(map[string]string, 3)
 	messageHeaders["Subject"] = globalConfig.SMTP.Subject
